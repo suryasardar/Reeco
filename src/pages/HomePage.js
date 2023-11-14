@@ -1,9 +1,17 @@
 import React from "react";
-import NavBar from "../compoents/nav";
+
+import OrderComponent from "../compoents/orderview";
+import YourContainerComponent from "../compoents/status";
+import YourComponent from "../compoents/table";
 
 const HomePage = () => {
     return (
-        <NavBar/>
+        <>
+         
+            <OrderComponent />
+            <YourContainerComponent />
+            <YourComponent/>
+        </>
     )
 }
 export default HomePage;
