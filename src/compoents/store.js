@@ -2,14 +2,36 @@
 import React from 'react';
 import dummyData from '../data.json';
 import styled from 'styled-components';
+import { useEffect } from 'react';
+import { useDispatch,useSelector} from 'react-redux';
+import { setProducts } from '../Redux/Reducer';
+import { cart } from '../Redux/Reducer';
 
- 
+
+
 
 const YourComponent = () => {
-  const products = dummyData.products;
+     
+    const dispatch = useDispatch();
+    useEffect(() => {
+        // Assuming jsonData is your JSON data
+        const jsonData = dummyData.products;
+         
+    
+        // Dispatch the action to set the initial state
+        dispatch(setProducts(jsonData));
+      }, [dispatch]); // 
+    
+    const products = useSelector((state) => state.products)
+    const AddToHome = async (product) => {
+       
+        dispatch(cart(product));
+    }
 
-  return (
-    <Container>
+    return (
+      
+        <Container>
+           
       <h1>Product List</h1>
       <Table>
         <thead>
@@ -39,6 +61,7 @@ const YourComponent = () => {
               <TableCell>{product.quantity}</TableCell>
               <TableCell>${product.total}</TableCell>
                   <TableCell> 
+                   
                       {/* <img src={process.env.PUBLIC_URL + product.status.correct}
                           alt="Correct"
                           style={{ width: '50px', height: '50px', marginRight: '10px' }}
@@ -46,9 +69,9 @@ const YourComponent = () => {
                       <img src={process.env.PUBLIC_URL + product.status.wrong}
                           alt="Wrong"
                           style={{ width: '50px', height: '50px', marginRight: '10px' }} /> */}
-                      {product.status}
+                      Edit
                   </TableCell>
-                  <TableCell><button>ADD</button></TableCell>
+                  <TableCell onClick={()=>AddToHome(product)}><button>ADD</button></TableCell>
 
             </TableRow>
           ))}

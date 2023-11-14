@@ -1,53 +1,62 @@
+
+
+
+
 {
 "products": [
     {
+        "id":1,
       "image": "/Apple.png",
       "name": "chicken butter",
       "brand": "Brand A",
       "price": 50,
       "quantity": 2,
       "total": 100,
-      "status": "Edit"
+      "status": 0
     },
     {
+        "id":2,
         "image": "/Avacado.jpg",
       "name": "lorem4",
       "brand": "Brand B",
       "price": 75,
       "quantity": 3,
       "total": 225,
-      "status":"Edit"
+      "status":0
          
       
     },
     {
+        "id":3,
         "image": "/Apple.png",
         "name": "lorem2",
         "brand": "Brand B",
         "price": 75,
         "quantity": 3,
         "total": 225,
-        "status": "Edit"
+        "status": 0
       },
        
       {
+        "id":4,
         "image": "/Apple.png",
         "name": "lorem2",
         "brand": "Brand B",
         "price": 75,
         "quantity": 3,
         "total": 225,
-        "status": "Edit"
+        "status": 0
         
       },
       {
+        "id":5,
         "image": "/Avacado.jpg",
         "name": "lorem3",
         "brand": "Brand B",
         "price": 75,
         "quantity": 3,
         "total": 225,
-        "status": "Edit"
+        "status": 0
       }
   ]
 }
