@@ -1,38 +1,30 @@
 // YourComponent.js
-import React from 'react';
-import dummyData from '../data.json';
-import styled from 'styled-components';
-import { useEffect } from 'react';
-import { useDispatch,useSelector} from 'react-redux';
-import { setProducts } from '../Redux/Reducer';
-import { cart } from '../Redux/Reducer';
-import { Link } from 'react-router-dom';
-
-
-
+import React from "react";
+import dummyData from "../data.json";
+import styled from "styled-components";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setProducts } from "../Redux/Reducer";
+import { cart } from "../Redux/Reducer";
+import { Link } from "react-router-dom";
 
 const YourComponent = () => {
-     
-    const dispatch = useDispatch();
-    useEffect(() => {
-        // Assuming jsonData is your JSON data
-        const jsonData = dummyData.products;
-         
-    
-        // Dispatch the action to set the initial state
-        dispatch(setProducts(jsonData));
-      }, [dispatch]); // 
-    
-    const products = useSelector((state) => state.products)
-  const AddToHome = async (product) => {
-       
-        dispatch(cart(product));
-    }
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // Assuming jsonData is your JSON data
+    const jsonData = dummyData.products;
 
-    return (
-      
-        <Container>
-           
+    // Dispatch the action to set the initial state
+    dispatch(setProducts(jsonData));
+  }, [dispatch]); //
+
+  const products = useSelector((state) => state.products);
+  const AddToHome = async (product) => {
+    dispatch(cart(product));
+  };
+
+  return (
+    <Container>
       <h1>Product List</h1>
       <Table>
         <thead>
@@ -53,7 +45,7 @@ const YourComponent = () => {
                 <img
                   src={process.env.PUBLIC_URL + product.image}
                   alt={product.name}
-                  style={{ width: '50px', height: '50px', marginRight: '10px' }}
+                  style={{ width: "50px", height: "50px", marginRight: "10px" }}
                 />
               </TableCell>
               <TableCell>{product.name}</TableCell>
@@ -61,9 +53,8 @@ const YourComponent = () => {
               <TableCell>${product.price}</TableCell>
               <TableCell>{product.quantity}</TableCell>
               <TableCell>${product.total}</TableCell>
-                  <TableCell> 
-                   
-                      {/* <img src={process.env.PUBLIC_URL + product.status.correct}
+              <TableCell>
+                {/* <img src={process.env.PUBLIC_URL + product.status.correct}
                           alt="Correct"
                           style={{ width: '50px', height: '50px', marginRight: '10px' }}
                       />
@@ -71,13 +62,20 @@ const YourComponent = () => {
                           alt="Wrong"
                           style={{ width: '50px', height: '50px', marginRight: '10px' }} /> */}
                 Edit
-                  </TableCell>
-                <Link to="/">
+              </TableCell>
+              <Link to="/">
                 <TableCell onClick={() => AddToHome(product)}>
-                <button style={{ backgroundColor: 'green', color: 'white', borderRadius: '10px' }}>
-                  ADD</button></TableCell>
-                </Link>
-
+                  <button
+                    style={{
+                      backgroundColor: "green",
+                      color: "white",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    ADD
+                  </button>
+                </TableCell>
+              </Link>
             </TableRow>
           ))}
         </tbody>

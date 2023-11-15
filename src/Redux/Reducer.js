@@ -23,23 +23,21 @@ const yourSlice = createSlice({
       console.log([...Display, action.payload]);
       console.log(current(state));
     },
-      changeProductState: (state, action) => {
-    
-          
-          const { products, Display } = current(state);
-          console.log(action.payload)
-          const response = Display.map((obj) => {
-              if (obj.id === action.payload.selected.id) {
-                return {
-                    ...obj,status:action.payload.status
-                }
-              } else {
-                  return {...obj};
-              }
-             
-           })
-          // Updating the array using spread operator
-        state.Display=response
+    changeProductState: (state, action) => {
+      const { products, Display } = current(state);
+      console.log(action.payload);
+      const response = Display.map((obj) => {
+        if (obj.id === action.payload.selected.id) {
+          return {
+            ...obj,
+            status: action.payload.status,
+          };
+        } else {
+          return { ...obj };
+        }
+      });
+      // Updating the array using spread operator
+      state.Display = response;
       console.log(current(state));
     },
     // Add more reducers as needed

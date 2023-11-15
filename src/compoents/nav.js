@@ -27,9 +27,9 @@ const Navbar = () => {
               order
             </a>
           </div>
-            <a className="nav-link text-white" href="/Analytics">
-              Analytics
-            </a>
+          <a className="nav-link text-white" href="/Analytics">
+            Analytics
+          </a>
           <div className="navbar-nav ms-auto p-2 bd-highlight">
             <a
               className="nav-link disabled text-white"

@@ -15,7 +15,7 @@ const Table = () => {
   const [selected, setSlected] = useState();
   const Display = useSelector((state) => state.Display);
 
-  const ProductStateChange = (selected,status) => {
+  const ProductStateChange = (selected, status) => {
     try {
       dispatch(changeProductState({ selected, status }));
     } catch (error) {}
@@ -32,7 +32,15 @@ const Table = () => {
       >
         <Input type="text" placeholder="Search" />
         <Link to="/store">
-          <Button style={{ backgroundColor: 'green', color: 'white', borderRadius: '10px' }}>Add Item</Button>
+          <Button
+            style={{
+              backgroundColor: "green",
+              color: "white",
+              borderRadius: "10px",
+            }}
+          >
+            Add Item
+          </Button>
         </Link>
       </div>
 
@@ -50,7 +58,7 @@ const Table = () => {
         </thead>
         <tbody>
           {Display.map((product) => (
-            <TableRow key={product.name}  >
+            <TableRow key={product.name}>
               <TableCell>
                 <img
                   src={process.env.PUBLIC_URL + product.image}
@@ -74,8 +82,8 @@ const Table = () => {
                       marginRight: "10px",
                     }}
                     onClick={() => {
-                    //   setSlected(product);
-                      ProductStateChange(product,1);
+                      //   setSlected(product);
+                      ProductStateChange(product, 1);
                     }}
                   />
                   <img
@@ -92,11 +100,17 @@ const Table = () => {
                     }}
                   />
                 </div>
-                <div style={{ backgroundColor: getStatusColor(product?.status), borderRadius: '10px', color:'white',textAlign:'center'}}>
-
-                {product?.status === 1 && <div > Approved</div>}
-                {product?.status === 2 && <div>Missing</div>}
-                {product?.status === 3 && <div>Missing-Urgent</div>}
+                <div
+                  style={{
+                    backgroundColor: getStatusColor(product?.status),
+                    borderRadius: "10px",
+                    color: "white",
+                    textAlign: "center",
+                  }}
+                >
+                  {product?.status === 1 && <div> Approved</div>}
+                  {product?.status === 2 && <div>Missing</div>}
+                  {product?.status === 3 && <div>Missing-Urgent</div>}
                 </div>
                 Edit
               </TableCell>
@@ -111,12 +125,12 @@ const Table = () => {
         closable={false}
         open={open}
         onOk={() => {
-            ProductStateChange(selected,3);
-            setOpen(false)
+          ProductStateChange(selected, 3);
+          setOpen(false);
         }}
         onCancel={() => {
-            ProductStateChange(selected,2);
-            setOpen(false)
+          ProductStateChange(selected, 2);
+          setOpen(false);
         }}
         width={500}
         okText="Yes"
@@ -130,13 +144,13 @@ const Table = () => {
 const getStatusColor = (status) => {
   switch (status) {
     case 1:
-      return 'lightgreen'; // Approved
+      return "lightgreen"; // Approved
     case 2:
-      return 'orange'; // Missing
+      return "orange"; // Missing
     case 3:
-      return 'red'; // Missing-Urgent
+      return "red"; // Missing-Urgent
     default:
-      return 'inherit';
+      return "inherit";
   }
 };
 const Container = styled.div`

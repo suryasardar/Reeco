@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
- 
 
 const OrderComponent = () => {
   // const products = useSelector((state) => state.products)
@@ -19,7 +18,7 @@ const OrderComponent = () => {
             Approved order
           </ApprovedButton>
         </ButtonContainer>
-        <div>      </div>
+        <div> </div>
       </OrderContainer>
       {/* ))} */}
     </>
@@ -31,7 +30,6 @@ const OrderContainer = styled.div`
   align-items: flex-start;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 15px auto;
-  
 `;
 
 const OrderNumber = styled.div`
