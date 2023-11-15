@@ -1,7 +1,7 @@
 import React from "react";
-import Data from "../compoents/store";
+import YourComponent from "../compoents/store";
 
 const StorePage = () => {
-  return <Data />;
+  return <YourComponent />;
 };
 export default StorePage;
