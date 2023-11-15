@@ -15,7 +15,7 @@ const Table = () => {
   const [selected, setSlected] = useState();
   const Display = useSelector((state) => state.Display);
 
-  const ProductStateChange = (status) => {
+  const ProductStateChange = (selected,status) => {
     try {
       dispatch(changeProductState({ selected, status }));
     } catch (error) {}
@@ -32,7 +32,7 @@ const Table = () => {
       >
         <Input type="text" placeholder="Search" />
         <Link to="/store">
-          <Button>Add Item</Button>
+          <Button style={{ backgroundColor: 'green', color: 'white', borderRadius: '10px' }}>Add Item</Button>
         </Link>
       </div>
 
@@ -50,7 +50,7 @@ const Table = () => {
         </thead>
         <tbody>
           {Display.map((product) => (
-            <TableRow key={product.name}>
+            <TableRow key={product.name}  >
               <TableCell>
                 <img
                   src={process.env.PUBLIC_URL + product.image}
@@ -74,8 +74,8 @@ const Table = () => {
                       marginRight: "10px",
                     }}
                     onClick={() => {
-                      setSlected(product);
-                      ProductStateChange(1);
+                    //   setSlected(product);
+                      ProductStateChange(product,1);
                     }}
                   />
                   <img
@@ -92,9 +92,12 @@ const Table = () => {
                     }}
                   />
                 </div>
-                {product?.status === 1 && <div> Approved</div>}
+                <div style={{ backgroundColor: getStatusColor(product?.status), borderRadius: '10px', color:'white',textAlign:'center'}}>
+
+                {product?.status === 1 && <div > Approved</div>}
                 {product?.status === 2 && <div>Missing</div>}
                 {product?.status === 3 && <div>Missing-Urgent</div>}
+                </div>
                 Edit
               </TableCell>
             </TableRow>
@@ -108,11 +111,11 @@ const Table = () => {
         closable={false}
         open={open}
         onOk={() => {
-            ProductStateChange(3);
+            ProductStateChange(selected,3);
             setOpen(false)
         }}
         onCancel={() => {
-            ProductStateChange(2);
+            ProductStateChange(selected,2);
             setOpen(false)
         }}
         width={500}
@@ -123,6 +126,18 @@ const Table = () => {
       </Modal>
     </Container>
   );
+};
+const getStatusColor = (status) => {
+  switch (status) {
+    case 1:
+      return 'lightgreen'; // Approved
+    case 2:
+      return 'orange'; // Missing
+    case 3:
+      return 'red'; // Missing-Urgent
+    default:
+      return 'inherit';
+  }
 };
 const Container = styled.div`
   border-radius: 15px;
@@ -156,7 +171,7 @@ const Tables = styled.table`
 `;
 
 const TableHeader = styled.th`
-  border: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 `;
@@ -168,7 +183,7 @@ const TableRow = styled.tr`
 `;
 
 const TableCell = styled.td`
-  border: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   padding: 8px;
 `;
 

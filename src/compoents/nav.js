@@ -1,54 +1,48 @@
- 
+import React from "react";
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-
- 
-
-const NavBar = () => {
+const Navbar = () => {
   return (
-    <NavContainer>
-      <NavList>
-        <NavItem>
-          <NavLink to="/">Reeco</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/store">Store</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/orders">Orders Analytics</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/hello">Hello Surya</NavLink>
-        </NavItem>
-      </NavList>
-    </NavContainer>
+    <nav className="navbar navbar-expand-lg navbar-light bg-success">
+      <div className="container-fluid d-flex justify-content-between align-items-center">
+        <a className="navbar-brand text-white" href="/">
+          Reeco
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <a className="nav-link active text-white" href="/store">
+              store
+            </a>
+            <a className="nav-link text-white" href="/order">
+              order
+            </a>
+          </div>
+            <a className="nav-link text-white" href="/Analytics">
+              Analytics
+            </a>
+          <div className="navbar-nav ms-auto p-2 bd-highlight">
+            <a
+              className="nav-link disabled text-white"
+              href="/email"
+              tabIndex="-1"
+            >
+              HelloSurya
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 };
 
-const NavContainer = styled.nav`
-  background-color: green;
-  padding: 10px;
-`;
-
-const NavList = styled.ul`
-  list-style-type: none;
-  display: flex;
-  justify-content: space-around;
-`;
-
-const NavItem = styled.li`
-  margin: 0;
-  padding: 0;
-`;
-
-const NavLink = styled(Link)`
-  text-decoration: none;
-  color: white;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-export default NavBar;
+export default Navbar;

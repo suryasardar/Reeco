@@ -27,11 +27,16 @@ const yourSlice = createSlice({
     
           
           const { products, Display } = current(state);
-         
+          console.log(action.payload)
           const response = Display.map((obj) => {
-              return {
-                   ...obj,status:action.payload.status
-               }
+              if (obj.id === action.payload.selected.id) {
+                return {
+                    ...obj,status:action.payload.status
+                }
+              } else {
+                  return {...obj};
+              }
+             
            })
           // Updating the array using spread operator
         state.Display=response

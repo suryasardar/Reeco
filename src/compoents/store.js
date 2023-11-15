@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useDispatch,useSelector} from 'react-redux';
 import { setProducts } from '../Redux/Reducer';
 import { cart } from '../Redux/Reducer';
+import { Link } from 'react-router-dom';
 
 
 
@@ -23,7 +24,7 @@ const YourComponent = () => {
       }, [dispatch]); // 
     
     const products = useSelector((state) => state.products)
-    const AddToHome = async (product) => {
+  const AddToHome = async (product) => {
        
         dispatch(cart(product));
     }
@@ -69,9 +70,13 @@ const YourComponent = () => {
                       <img src={process.env.PUBLIC_URL + product.status.wrong}
                           alt="Wrong"
                           style={{ width: '50px', height: '50px', marginRight: '10px' }} /> */}
-                      Edit
+                Edit
                   </TableCell>
-                  <TableCell onClick={()=>AddToHome(product)}><button>ADD</button></TableCell>
+                <Link to="/">
+                <TableCell onClick={() => AddToHome(product)}>
+                <button style={{ backgroundColor: 'green', color: 'white', borderRadius: '10px' }}>
+                  ADD</button></TableCell>
+                </Link>
 
             </TableRow>
           ))}

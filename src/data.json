@@ -5,7 +5,7 @@
 {
 "products": [
     {
-        "id":1,
+        "id":164345,
       "image": "/Apple.png",
       "name": "chicken butter",
       "brand": "Brand A",
@@ -15,8 +15,8 @@
       "status": 0
     },
     {
-        "id":2,
-        "image": "/Avacado.jpg",
+        "id":23577,
+        "image": "/Apple.png",
       "name": "lorem4",
       "brand": "Brand B",
       "price": 75,
@@ -27,7 +27,7 @@
       
     },
     {
-        "id":3,
+        "id":3675674,
         "image": "/Apple.png",
         "name": "lorem2",
         "brand": "Brand B",
@@ -38,7 +38,7 @@
       },
        
       {
-        "id":4,
+        "id":446783,
         "image": "/Apple.png",
         "name": "lorem2",
         "brand": "Brand B",
@@ -49,8 +49,8 @@
         
       },
       {
-        "id":5,
-        "image": "/Avacado.jpg",
+        "id":556865,
+        "image": "/Apple.png",
         "name": "lorem3",
         "brand": "Brand B",
         "price": 75,
