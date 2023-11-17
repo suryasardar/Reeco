@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Modal } from "antd";
 import { changeProductState } from "../Redux/Reducer";
+import { updateProductState } from "../Redux/Reducer";
 
 //STATUS PENDING = 0
 //STATUS APPROVED = 1
@@ -11,14 +12,38 @@ import { changeProductState } from "../Redux/Reducer";
 //STATUS MISSING URGENT =3
 const Table = () => {
   const dispatch = useDispatch();
+
   const [open, setOpen] = useState(false);
+  const [pop, setpop] = useState(false);
   const [selected, setSlected] = useState();
+
   const Display = useSelector((state) => state.Display);
+  const [num, setnum] = useState();
 
   const ProductStateChange = (selected, status) => {
     try {
       dispatch(changeProductState({ selected, status }));
     } catch (error) {}
+     
+  };
+
+  const ProductStateChanges = (num, status,selected) => {
+    try {
+      dispatch(updateProductState({ num, status,selected }));
+    } catch (error) {}
+  }
+  const handleQuantityChange = (e) => {
+    setnum(num + 1);
+    // You can add logic to update the total based on quantity
+  };
+  const handleQuantityChanges = (e) => {
+    if (num >= 1) {
+      setnum(num - 1);
+    } else {
+      // return setnum(1);
+    }
+
+    // You can add logic to update the total based on quantity
   };
 
   return (
@@ -111,8 +136,20 @@ const Table = () => {
                   {product?.status === 1 && <div> Approved</div>}
                   {product?.status === 2 && <div>Missing</div>}
                   {product?.status === 3 && <div>Missing-Urgent</div>}
+                  {product?.status === 4 && <div>priceUpdated</div>}
+                  {product?.status === 5 && <div>quantityUpdated</div>}
+                 
                 </div>
-                Edit
+                <p
+                  onClick={() => {
+                    setpop(true);
+                    setSlected(product);
+                    setnum(selected?.quantity);
+                  }}
+                >
+                   
+                  Edit
+                </p>
               </TableCell>
             </TableRow>
           ))}
@@ -138,6 +175,66 @@ const Table = () => {
       >
         is {selected?.name},Is this very urgent?
       </Modal>
+      <Modal
+        title="lorem"
+        centered
+        closable={false}
+        open={pop}
+        onOk={() => {
+          ProductStateChanges(num, 5,selected);
+          setpop(false);
+        }}
+        onCancel={() => {
+          setpop(false);
+        }}
+        width={600}
+        okText="send"
+        cancelText="cancel"
+      >
+        {setpop && (
+          <>
+            <div className="popup">
+              <img
+                src="/Apple.png"
+                alt="Product Image"
+                style={{
+                  float: "right",
+                  maxWidth: "200px",
+                  maxHeight: "350px",
+                }}
+              />
+              <p style={{ marginBottom: "1cm" }}>Price: {selected?.price}</p>
+              <label htmlFor="quantity" style={{ marginBottom: "1cm" }}>
+                Quantity:
+              </label>
+              <button
+                onClick={handleQuantityChange}
+                style={{ borderRadius: "20px", background: "green" }}
+              >
+                +
+              </button>
+              <button>{num}</button>
+              <button
+                onClick={handleQuantityChanges}
+                style={{ borderRadius: "20px", background: "green" }}
+              >
+                -
+              </button>
+              <p style={{ marginBottom: "1cm" }}>
+                Total: ${selected?.price * num}
+              </p>
+            </div>
+            <div>
+              <label htmlFor="reason">Choose Reason (optional):</label>
+              <div>
+                <Buttons>missing quantity</Buttons>
+                <Buttons>quantity not equal</Buttons>
+                <Buttons>others</Buttons>
+              </div>
+            </div>
+          </>
+        )}
+      </Modal>
     </Container>
   );
 };
@@ -149,6 +246,8 @@ const getStatusColor = (status) => {
       return "orange"; // Missing
     case 3:
       return "red"; // Missing-Urgent
+    case 5:
+      return "green"; //quantityUpadated
     default:
       return "inherit";
   }
@@ -178,6 +277,13 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const Buttons = styled.button`
+  padding: 8px 15px;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+`;
 const Tables = styled.table`
   width: 100%;
   margin-top: 20px;

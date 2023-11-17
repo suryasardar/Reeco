@@ -40,9 +40,29 @@ const yourSlice = createSlice({
       state.Display = response;
       console.log(current(state));
     },
+    updateProductState: (state, action) => {
+      const { Display } = current(state);
+
+      const response = Display.map((obj) => {
+        if (
+          obj.quantity !== action.payload.num &&
+          obj.id === action.payload.selected.id
+        ) {
+          return {
+            ...obj,
+            status: action.payload.status,
+          };
+        } else {
+          return { ...obj };
+        }
+      });
+      state.Display = response;
+      console.log(current(state), "ok");
+    },
     // Add more reducers as needed
   },
 });
 
-export const { setProducts, cart, changeProductState } = yourSlice.actions;
+export const { setProducts, cart, changeProductState, updateProductState } =
+  yourSlice.actions;
 export default yourSlice.reducer;
